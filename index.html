@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Portal do Cliente </title>
+    <title>Portal do Cliente</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
@@ -18,7 +18,6 @@
 
         body {
             overflow-x: hidden;
-            overflow-y: hidden;
             background-color: #f5f5f5;
         }
 
@@ -28,7 +27,6 @@
             justify-content: space-between;
             align-items: center;
             background-color: #1B1F2B;
-            /* azul/preto escuro */
             padding: 15px 50px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             position: sticky;
@@ -60,7 +58,6 @@
 
         .navbar ul li a:hover {
             background-color: #8B0000;
-            /* vermelho escuro */
             color: #FFF;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
@@ -70,6 +67,7 @@
             display: flex;
             min-height: 100vh;
             align-items: stretch;
+            flex-wrap: wrap;
         }
 
         .hero-image {
@@ -94,14 +92,11 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-
             padding: 50px;
-
-            height: 90vh;
+            min-height: 90vh;
         }
 
         .container-form {
-            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -110,20 +105,20 @@
             padding: 60px 50px;
             box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
             border-radius: 0 20px 20px 0;
-
-            width: 800px;
+            width: 100%;
+            max-width: 500px;
         }
 
         .hero-form h1 {
-            font-size: 32px;
-            margin-bottom: 25px;
+            font-size: 28px;
+            margin-bottom: 20px;
             color: #1B1F2B;
             line-height: 1.4;
         }
 
         .hero-form p {
             font-size: 16px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: #333333;
         }
 
@@ -147,7 +142,6 @@
             width: 100%;
             padding: 15px;
             background-color: #8B0000;
-            /* vermelho escuro */
             color: #FFFFFF;
             border: none;
             border-radius: 8px;
@@ -163,20 +157,25 @@
         }
 
         /* Responsividade */
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
             .hero {
                 flex-direction: column;
             }
 
             .hero-image {
-                height: 250px;
+                height: 300px;
                 border-radius: 0 0 20px 20px;
             }
 
             .hero-form {
-                padding: 40px 25px;
-                border-radius: 0 0 0 0;
+                padding: 30px 20px;
                 box-shadow: none;
+            }
+
+            .container-form {
+                border-radius: 0 0 0 0;
+                padding: 40px 25px;
+                width: 100%;
             }
 
             .navbar {
@@ -185,6 +184,43 @@
 
             .navbar ul {
                 gap: 15px;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-image {
+                height: 200px;
+            }
+
+            .hero-form h1 {
+                font-size: 22px;
+            }
+
+            .hero-form p {
+                font-size: 14px;
+            }
+
+            .hero-form input, .hero-form button {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .navbar ul li a {
+                display: block;
+                width: 100%;
+                text-align: left;
             }
         }
     </style>
@@ -224,38 +260,28 @@
 
         // Função para aplicar máscara de CPF
         function formatCPF(value) {
-            // Remove tudo que não for número
             value = value.replace(/\D/g, '');
-            // Aplica a máscara
             value = value.replace(/(\d{3})(\d)/, '$1.$2');
             value = value.replace(/(\d{3})(\d)/, '$1.$2');
             value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
             return value;
         }
 
-        // Aplica a máscara enquanto o usuário digita
         documentoInput.addEventListener('input', (e) => {
             e.target.value = formatCPF(e.target.value);
         });
 
-        // Redireciona para o WhatsApp ao enviar o formulário
         consultaForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Evita o envio padrão do formulário
-
+            e.preventDefault();
             const cpf = documentoInput.value;
 
-            if (cpf.length < 14) { // 14 caracteres no formato 000.000.000-00
+            if (cpf.length < 14) {
                 alert('Por favor, digite um CPF válido.');
                 return;
             }
 
-            // Número do WhatsApp
-            const numeroWhatsApp = '552992984215343'; // código do país + número
-
-            // Mensagem de saudação e CPF
+            const numeroWhatsApp = '552992984215343';
             const mensagem = `Olá, falar com um especialista! meu CPF: ${cpf}`;
-
-            // Redireciona para o WhatsApp
             const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
             window.location.href = url;
         });
