@@ -4,553 +4,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal do Cliente - Escritório de Advocacia</title>
-    <meta name="description"
-        content="Portal oficial do cliente para consultas jurídicas e atendimento especializado. Direito Civil, Trabalhista, Criminal, Família e mais.">
-    <meta name="author" content="Portal do Cliente">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Portal do Cliente - Escritório de Advocacia">
-    <meta property="og:description"
-        content="Portal oficial do cliente para consultas jurídicas e atendimento especializado.">
-    <meta property="og:type" content="website">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-</head>
-
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>Portal do Cliente</h1>
-                </div>
-
-                <nav class="nav">
-                    <a href="#home">Home</a>
-                    <a href="#sobre">Sobre</a>
-                    <a href="#servicos">Serviços</a>
-                    <a href="#faq">FAQ</a>
-                    <a href="#contato">Contato</a>
-                </nav>
-
-                <button class="btn btn-primary" onclick="openWhatsApp()">
-                    Fale Conosco
-                </button>
-
-                <!-- Mobile menu button -->
-                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                    <i data-lucide="menu"></i>
-                </button>
-            </div>
-
-            <!-- Mobile menu -->
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="#home" onclick="closeMobileMenu()">Home</a>
-                <a href="#sobre" onclick="closeMobileMenu()">Sobre</a>
-                <a href="#servicos" onclick="closeMobileMenu()">Serviços</a>
-                <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
-                <a href="#contato" onclick="closeMobileMenu()">Contato</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Banner -->
-    <section id="home" class="hero">
-        <div class="hero-bg-elements">
-            <div class="hero-bg-circle hero-bg-circle-1"></div>
-            <div class="hero-bg-circle hero-bg-circle-2"></div>
-        </div>
-
-        <div class="container">
-            <div class="hero-content">
-                <!-- Left Content -->
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        Resolva sua questão legal
-                        <span class="text-primary">agora mesmo</span>
-                    </h1>
-                    <p class="hero-description">
-                        Portal oficial do cliente para consultas jurídicas e atendimento especializado.
-                        Defendemos seus direitos com excelência e dedicação.
-                    </p>
-
-                    <div class="hero-buttons">
-                        <button class="btn btn-destructive" onclick="openWhatsApp()">
-                            QUERO ATENDIMENTO
-                        </button>
-                        <button class="btn btn-outline" onclick="scrollToServices()">
-                            Ver Serviços
-                        </button>
-                    </div>
-
-                </div>
-
-                <!-- Right Form -->
-                <!-- Right Form -->
-                <div class="hero-form-container">
-                    <div class="card hero-form-card">
-                        <div class="form-header">
-                            <h3>Consulta Gratuita</h3>
-                            <p>Preencha o formulário e nossa equipe entrará em contato</p>
-                        </div>
-
-                        <form id="heroForm" class="form">
-                            <div class="form-group">
-                                <label for="nome">Nome Completo *</label>
-                                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo"
-                                    required>
-                                <div class="error-message" id="nomeError"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="cpf">CPF / CNPJ *</label>
-                                <input type="text" id="cpf" name="cpf"
-                                    placeholder="000.000.000-00 ou 00.000.000/0001-00" required>
-                                <div class="error-message" id="cpfError"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">E-mail *</label>
-                                <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com"
-                                    required>
-                                <div class="error-message" id="emailError"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="mensagem">Descreva</label>
-                                <textarea id="mensagem" name="mensagem" rows="4"
-                                    placeholder="Conte-nos brevemente sobre sua questão legal. Quanto mais detalhes, melhor poderemos ajudar..."></textarea>
-                            </div>
-
-                            <div class="form-group checkbox-group">
-                                <input type="checkbox" id="termos" name="termos" required>
-                                <label for="termos" class="checkbox-label">
-                                    Li e aceito os <a href="#">Termos de Serviço</a> e <a href="#">Política de
-                                        Privacidade</a>.
-                                    Autorizo o contato via WhatsApp para atendimento.
-                                </label>
-                                <div class="error-message" id="termosError"></div>
-                            </div>
-
-                            <button type="submit" class="btn btn-success btn-full" id="submitBtn">
-                                <i data-lucide="check-circle"></i>
-                                SOLICITAR ATENDIMENTO
-                            </button>
-
-                            <div class="form-security">
-                                🔒 Suas informações estão seguras e protegidas
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="servicos" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nossas Especialidades</h2>
-                <p>Oferecemos atendimento especializado em diversas áreas do direito para resolver suas questões legais.
-                </p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card" onclick="openWhatsAppService('Direito Civil')">
-                    <div class="service-icon">
-                        <i data-lucide="scale"></i>
-                    </div>
-                    <h3>Direito Civil</h3>
-                    <p>Contratos, indenizações, responsabilidade civil e questões patrimoniais.</p>
-                </div>
-
-                <div class="service-card" onclick="openWhatsAppService('Direito Trabalhista')">
-                    <div class="service-icon">
-                        <i data-lucide="users"></i>
-                    </div>
-                    <h3>Direito Trabalhista</h3>
-                    <p>Direitos do trabalhador, rescisões, FGTS e questões previdenciárias.</p>
-                </div>
-
-                <div class="service-card" onclick="openWhatsAppService('Direito Criminal')">
-                    <div class="service-icon">
-                        <i data-lucide="shield"></i>
-                    </div>
-                    <h3>Direito Criminal</h3>
-                    <p>Defesa criminal, medidas cautelares e acompanhamento processual.</p>
-                </div>
-
-                <div class="service-card" onclick="openWhatsAppService('Direito Empresarial')">
-                    <div class="service-icon">
-                        <i data-lucide="building"></i>
-                    </div>
-                    <h3>Direito Empresarial</h3>
-                    <p>Constituição de empresas, contratos comerciais e recuperação judicial.</p>
-                </div>
-
-                <div class="service-card" onclick="openWhatsAppService('Direito de Família')">
-                    <div class="service-icon">
-                        <i data-lucide="heart"></i>
-                    </div>
-                    <h3>Direito de Família</h3>
-                    <p>Divórcio, pensão alimentícia, guarda de filhos e inventário.</p>
-                </div>
-
-                <div class="service-card" onclick="openWhatsAppService('Direito do Consumidor')">
-                    <div class="service-icon">
-                        <i data-lucide="shopping-cart"></i>
-                    </div>
-                    <h3>Direito do Consumidor</h3>
-                    <p>Defesa do consumidor, revisão de contratos e indenizações.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="sobre" class="about">
-        <div class="container">
-            <div class="about-content">
-                <!-- Left Content -->
-                <div class="about-text">
-                    <h2>Sobre o <span class="text-primary">Portal do Cliente</span></h2>
-                    <p class="about-description">
-                        Somos um escritório de advocacia comprometido em oferecer soluções jurídicas
-                        eficazes e acessíveis. Nossa missão é defender seus direitos com excelência,
-                        ética e dedicação.
-                    </p>
-
-                    <h3>Por que nos escolher?</h3>
-                    <div class="benefits-list">
-                        <div class="benefit-item">
-                            <i data-lucide="check-circle"></i>
-                            <span>Atendimento personalizado e humanizado</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i data-lucide="check-circle"></i>
-                            <span>Equipe especializada e qualificada</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i data-lucide="check-circle"></i>
-                            <span>Transparência em todo o processo</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i data-lucide="check-circle"></i>
-                            <span>Honorários justos e negociáveis</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i data-lucide="check-circle"></i>
-                            <span>Acompanhamento completo do caso</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i data-lucide="check-circle"></i>
-                            <span>Disponibilidade para emergências</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Stats -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i data-lucide="users"></i>
-                        </div>
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Clientes Atendidos</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i data-lucide="clock"></i>
-                        </div>
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Anos de Experiência</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i data-lucide="award"></i>
-                        </div>
-                        <div class="stat-number">95%</div>
-                        <div class="stat-label">Taxa de Sucesso</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i data-lucide="check-circle"></i>
-                        </div>
-                        <div class="stat-number">1000+</div>
-                        <div class="stat-label">Casos Resolvidos</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <div class="section-header">
-                <h2>Perguntas Frequentes</h2>
-                <p>Esclarecemos as principais dúvidas dos nossos clientes sobre nossos serviços jurídicos.</p>
-            </div>
-
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Como funciona a primeira consulta?</span>
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>A primeira consulta é gratuita e pode ser realizada presencialmente, por telefone ou
-                            videochamada. Durante esta consulta, analisamos seu caso e explicamos as possíveis soluções
-                            jurídicas.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Quais são as formas de pagamento?</span>
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Aceitamos diversas formas de pagamento: dinheiro, cartão de crédito, débito, PIX e
-                            parcelamento. Os honorários são sempre negociáveis conforme a complexidade do caso.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Quanto tempo demora para resolver um processo?</span>
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>O tempo varia conforme a complexidade e natureza do caso. Processos administrativos podem
-                            levar de 30 a 90 dias, enquanto processos judiciais podem variar de 6 meses a alguns anos.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Vocês atendem em outras cidades?</span>
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sim, atendemos clientes de todo o Brasil. Para casos fora de São Paulo, utilizamos
-                            correspondentes jurídicos ou realizamos atendimento online quando possível.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Como acompanho o andamento do meu processo?</span>
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Você receberá atualizações regulares por e-mail, WhatsApp ou telefone. Também pode consultar
-                            o andamento através do nosso portal do cliente online.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Há alguma garantia de resultado?</span>
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Embora não possamos garantir resultados específicos devido à natureza do direito, trabalhamos
-                            com dedicação máxima para alcançar o melhor resultado possível para seu caso.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Posso cancelar o contrato de prestação de serviços?</span>
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sim, você pode cancelar o contrato a qualquer momento. Os honorários já pagos referentes aos
-                            serviços já prestados não são reembolsáveis, conforme previsto no contrato.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Atendem casos de urgência?</span>
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sim, temos plantão para casos urgentes. Entre em contato pelo WhatsApp ou telefone e
-                            avaliaremos a urgência do seu caso para atendimento imediato.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contato" class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- Company Info -->
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <i data-lucide="scale"></i>
-                        <h3>Portal do Cliente</h3>
-                    </div>
-                    <p>Escritório de advocacia comprometido em defender seus direitos com excelência, ética e dedicação.
-                    </p>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="footer-section">
-                    <h4>Contato</h4>
-                    <div class="contact-list">
-                        <div class="contact-item">
-                            <i data-lucide="map-pin"></i>
-                            <div>
-                                <div class="contact-label">Endereço</div>
-                                <div class="contact-value">São Paulo - SP</div>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i data-lucide="clock"></i>
-                            <div>
-                                <div class="contact-label">Horário</div>
-                                <div class="contact-value">Seg-Sex: 8h às 18h</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Services -->
-                <div class="footer-section">
-                    <h4>Serviços</h4>
-                    <div class="footer-links">
-                        <a href="#servicos">Direito Civil</a>
-                        <a href="#servicos">Direito Trabalhista</a>
-                        <a href="#servicos">Direito Criminal</a>
-                        <a href="#servicos">Direito de Família</a>
-                        <a href="#servicos">Direito Empresarial</a>
-                        <a href="#servicos">Direito do Consumidor</a>
-                    </div>
-                </div>
-
-                <!-- Quick Links -->
-                <div class="footer-section">
-                    <h4>Links Rápidos</h4>
-                    <div class="footer-links">
-                        <a href="#home">Home</a>
-                        <a href="#sobre">Sobre</a>
-                        <a href="#servicos">Serviços</a>
-                        <a href="#faq">FAQ</a>
-                        <a href="#contato">Contato</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Section -->
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <div class="copyright">
-                        © 2024 Portal do Cliente. Todos os direitos reservados.
-                    </div>
-                    <div class="footer-bottom-links">
-                        <a href="#">Política de Privacidade</a>
-                        <a href="#">Termos de Uso</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Botão WhatsApp Flutuante com Mensagem -->
-    <div id="whatsapp-container">
-        <div id="whatsapp-message">Fale conosco agora!</div>
-        <a href="https://wa.link/5x6zso" target="_blank" id="whatsapp-button">
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-        </a>
-    </div>
+    <title>Bellinati Perez - Consultar Dívidas</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
-        /* Container do botão + mensagem */
-        #whatsapp-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-color: #f5f5f5;
+        }
+
+        /* Navbar */
+        .navbar {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            z-index: 9999;
+            background-color: #1B1F2B;
+            /* azul/preto escuro */
+            padding: 15px 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        /* Mensagem ao lado do botão */
-        #whatsapp-message {
-            background-color: #25D366;
-            color: white;
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FFFFFF;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #8B0000;
+            /* vermelho escuro */
+            color: #FFF;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            min-height: 100vh;
+            align-items: stretch;
+        }
+
+        .hero-image {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding: 50px;
+
+            height: 90vh;
+        }
+
+        .container-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #FFFFFF;
+            margin: 0 auto;
+            padding: 60px 50px;
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
+            border-radius: 0 20px 20px 0;
+
+            width: 800px;
+        }
+
+        .hero-form h1 {
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: #1B1F2B;
+            line-height: 1.4;
+        }
+
+        .hero-form p {
             font-size: 16px;
-            font-weight: bold;
-            padding: 10px 15px;
-            border-radius: 20px;
-            margin-right: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            animation: pulse 1.5s infinite;
+            margin-bottom: 25px;
+            color: #333333;
         }
 
-        /* Botão do WhatsApp */
-        #whatsapp-button img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
+        .hero-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #CCC;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
         }
 
-        #whatsapp-button img:hover {
-            transform: scale(1.1);
+        .hero-form input:focus {
+            border-color: #8B0000;
+            box-shadow: 0 0 8px rgba(139, 0, 0, 0.3);
+            outline: none;
         }
 
-        /* Animação para destacar a mensagem */
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
+        .hero-form button {
+            width: 100%;
+            padding: 15px;
+            background-color: #8B0000;
+            /* vermelho escuro */
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-form button:hover {
+            background-color: #660000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
             }
 
-            50% {
-                transform: scale(1.1);
+            .hero-image {
+                height: 250px;
+                border-radius: 0 0 20px 20px;
             }
 
-            100% {
-                transform: scale(1);
+            .hero-form {
+                padding: 40px 25px;
+                border-radius: 0 0 0 0;
+                box-shadow: none;
+            }
+
+            .navbar {
+                padding: 15px 25px;
+            }
+
+            .navbar ul {
+                gap: 15px;
             }
         }
     </style>
+</head>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <div class="toast-content">
-            <i data-lucide="check-circle"></i>
-            <span id="toastMessage">Mensagem de sucesso</span>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Portal do Cliente</div>
+        <ul class="nav-links">
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Soluções para empresas</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-image">
+            <img src="banner-1.png" alt="Mulher sorrindo">
         </div>
-    </div>
-
-    <!-- Loading Modal -->
-    <div id="loadingModal" class="loading-modal">
-        <div class="loading-content">
-            <div class="spinner"></div>
-            <p>Enviando formulário...</p>
+        <div class="hero-form">
+            <div class="container-form">
+                <h1>Negocie suas dívidas e mude o rumo da sua vida agora mesmo!</h1>
+                <form id="consultaForm">
+                    <p>Consulte na Bellinati se existem dívidas no seu CPF ou acompanhe seus acordos</p>
+                    <input type="text" id="documento" placeholder="Digite seu documento (CPF/CNPJ)" required>
+                    <button type="submit">Consultar</button>
+                </form>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <script src="script.js"></script>
+    <script>
+        // Seleciona o input e o formulário
+        const documentoInput = document.getElementById('documento');
+        const consultaForm = document.getElementById('consultaForm');
+
+        // Função para aplicar máscara de CPF
+        function formatCPF(value) {
+            // Remove tudo que não for número
+            value = value.replace(/\D/g, '');
+            // Aplica a máscara
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            return value;
+        }
+
+        // Aplica a máscara enquanto o usuário digita
+        documentoInput.addEventListener('input', (e) => {
+            e.target.value = formatCPF(e.target.value);
+        });
+
+        // Redireciona para o WhatsApp ao enviar o formulário
+        consultaForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Evita o envio padrão do formulário
+
+            const cpf = documentoInput.value;
+
+            if (cpf.length < 14) { // 14 caracteres no formato 000.000.000-00
+                alert('Por favor, digite um CPF válido.');
+                return;
+            }
+
+            // Número do WhatsApp
+            const numeroWhatsApp = '552992984215343'; // código do país + número
+
+            // Mensagem de saudação e CPF
+            const mensagem = `Olá, falar com um especialista! meu CPF: ${cpf}`;
+
+            // Redireciona para o WhatsApp
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+            window.location.href = url;
+        });
+    </script>
 </body>
 
 </html>
