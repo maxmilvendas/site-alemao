@@ -19,6 +19,7 @@
         body {
             overflow-x: hidden;
             background-color: #f5f5f5;
+            color: #333;
         }
 
         /* Navbar */
@@ -156,60 +157,74 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        /* Responsividade */
-        @media (max-width: 1024px) {
-            .hero {
-                flex-direction: column;
-            }
+        /* Sessão de serviços */
+        .services {
+            background-color: #FFFFFF;
+            padding: 80px 50px;
+            text-align: center;
+        }
 
-            .hero-image {
-                height: 300px;
-                border-radius: 0 0 20px 20px;
-            }
+        .services h2 {
+            font-size: 2.5rem;
+            color: #1B1F2B;
+            margin-bottom: 40px;
+        }
 
-            .hero-form {
-                padding: 30px 20px;
-                box-shadow: none;
-            }
+        .services-cards {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-            .container-form {
-                border-radius: 0 0 0 0;
-                padding: 40px 25px;
-                width: 100%;
-            }
+        .service-card {
+            background-color: #f8f8f8;
+            border-radius: 15px;
+            padding: 30px 20px;
+            width: 500px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-            .navbar {
-                padding: 15px 25px;
-            }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #8B0000;
+        }
 
-            .navbar ul {
-                gap: 15px;
-                flex-wrap: wrap;
-            }
+        .service-card p {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #1B1F2B;
+            color: #fff;
+            padding: 30px 50px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 14px;
         }
 
         @media (max-width: 600px) {
-            .hero-image {
-                height: 200px;
-            }
 
-            .hero-form h1 {
-                font-size: 22px;
-            }
-
-            .hero-form p {
-                font-size: 14px;
-            }
-
-            .hero-form input, .hero-form button {
-                font-size: 16px;
-                padding: 12px;
-            }
-
+            /* Navbar */
             .navbar {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 10px;
+                padding: 15px 20px;
+                gap: 20px;
+
+                display: none;
             }
 
             .navbar ul {
@@ -222,6 +237,62 @@
                 width: 100%;
                 text-align: left;
             }
+
+            /* Hero Section */
+            .hero {
+                flex-direction: column;
+                min-height: auto;
+                /* deixa altura flexível */
+                gap: 50px;
+            }
+
+            .hero-image {
+                height: 200px;
+                /* reduz altura da imagem */
+                border-radius: 0;
+            }
+
+            .hero-form {
+                padding: 20px 15px;
+                /* reduz padding para aproximar do topo */
+                min-height: auto;
+                margin-top: -50px;
+                /* aproxima o formulário da imagem */
+            }
+
+            .container-form {
+                padding: 30px 20px;
+                /* reduz padding do formulário */
+                border-radius: 10px;
+            }
+
+            .hero-form h1 {
+                font-size: 20px;
+            }
+
+            .hero-form p {
+                font-size: 14px;
+            }
+
+            .hero-form input,
+            .hero-form button {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            /* Sessão Serviços */
+            .services {
+                padding: 40px 15px;
+            }
+
+            .services h2 {
+                font-size: 24px;
+            }
+
+            .service-card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -233,6 +304,7 @@
         <ul class="nav-links">
             <li><a href="#">Contato</a></li>
             <li><a href="#">Soluções para empresas</a></li>
+            <li><a href="#services">Serviços</a></li>
         </ul>
     </nav>
 
@@ -253,12 +325,42 @@
         </div>
     </section>
 
+    <!-- Adicione no <head> da página para carregar os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Sessão Serviços -->
+    <section class="services" id="services">
+        <h2>Limpe seu nome agora mesmo!</h2>
+        <div class="services-cards">
+            <div class="service-card">
+                <i class="fas fa-robot fa-3x" style="color:#8B0000; margin-bottom:15px;"></i>
+                <h3>Negocie automaticamente</h3>
+                <p>Um portal de negociação totalmente automático.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-hand-holding-dollar fa-3x" style="color:#8B0000; margin-bottom:15px;"></i>
+                <h3>Descontos e facilitação dos pagamentos</h3>
+                <p>Tenha acesso a descontos e parcelamento das dívidas.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-headset fa-3x" style="color:#8B0000; margin-bottom:15px;"></i>
+                <h3>Suporte rápido e personalizado</h3>
+                <p>Se tiver dúvidas, nossa equipe entra em contato para ajudar!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2025 Portal do Cliente</p>
+        <p>CNPJ: 48.583.698/0001-41</p>
+        <p>Todos os direitos reservados.</p>
+    </footer>
+
     <script>
-        // Seleciona o input e o formulário
         const documentoInput = document.getElementById('documento');
         const consultaForm = document.getElementById('consultaForm');
 
-        // Função para aplicar máscara de CPF
         function formatCPF(value) {
             value = value.replace(/\D/g, '');
             value = value.replace(/(\d{3})(\d)/, '$1.$2');
@@ -274,12 +376,10 @@
         consultaForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const cpf = documentoInput.value;
-
             if (cpf.length < 14) {
                 alert('Por favor, digite um CPF válido.');
                 return;
             }
-
             const numeroWhatsApp = '552992984215343';
             const mensagem = `Olá, falar com um especialista! meu CPF: ${cpf}`;
             const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
