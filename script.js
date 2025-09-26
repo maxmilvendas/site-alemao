@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // WhatsApp Functions
 function openWhatsApp() {
     const message = encodeURIComponent("Olá, desejo um atendimento!");
-    window.open(`https://wa.me/5511919454166?text=${message}`, '_blank');
+    window.open(`https://wa.me/5511966078411?text=${message}`, '_blank');
 }
 
 function openWhatsAppService(serviceName) {
     const message = encodeURIComponent(`Olá, desejo um atendimento sobre ${serviceName}!`);
-    window.open(`https://wa.me/5511919454166?text=${message}`, '_blank');
+    window.open(`https://wa.me/5511966078411?text=${message}`, '_blank');
 }
 
 // Smooth scroll to services
@@ -175,7 +175,7 @@ Mensagem: ${formData.get('mensagem') || 'Não informada'}`;
     // Redirect to WhatsApp after toast
     setTimeout(() => {
         const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/5511919454166?text=${encodedMessage}`, '_blank');
+        window.open(`https://wa.me/5511966078411?text=${encodedMessage}`, '_blank');
     }, 1000);
 });
 
