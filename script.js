@@ -1,226 +1,130 @@
-// Initialize Lucide icons
-document.addEventListener('DOMContentLoaded', function() {
-    lucide.createIcons();
-});
-
-// WhatsApp Functions
-function openWhatsApp() {
-    const message = encodeURIComponent("Olá, desejo um atendimento!");
-    window.open(`https://wa.me/5511966078411?text=${message}`, '_blank');
-}
-
-function openWhatsAppService(serviceName) {
-    const message = encodeURIComponent(`Olá, desejo um atendimento sobre ${serviceName}!`);
-    window.open(`https://wa.me/5511966078411?text=${message}`, '_blank');
-}
-
-// Smooth scroll to services
-function scrollToServices() {
-    document.getElementById('servicos').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Mobile Menu Functions
+// Mobile Menu
 function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.classList.toggle('show');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    mobileMenu.classList.toggle('active');
 }
 
-function closeMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.classList.remove('show');
+// WhatsApp Link
+// WhatsApp Link
+function openWhatsApp() {
+    const message = "Olá, desejo um atendimento!";
+    const phone = "551151924444";
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+}
+
+
+// Smooth Scroll
+function scrollToSection(sectionId) {
+    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
 }
 
 // FAQ Toggle
-function toggleFAQ(element) {
-    const faqItem = element.closest('.faq-item');
-    const isActive = faqItem.classList.contains('active');
+function toggleFAQ(index) {
+    const faqItem = document.querySelectorAll('.faq-item')[index];
+    faqItem.classList.toggle('active');
     
-    // Close all FAQ items
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.classList.remove('active');
-    });
-    
-    // Open clicked item if it wasn't active
-    if (!isActive) {
-        faqItem.classList.add('active');
-    }
-}
-
-// Toast Notification
-function showToast(message, type = 'success') {
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toastMessage');
-    
-    toastMessage.textContent = message;
-    toast.classList.add('show');
-    
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
-}
-
-// Loading Modal
-function showLoading() {
-    const modal = document.getElementById('loadingModal');
-    modal.classList.add('show');
-}
-
-function hideLoading() {
-    const modal = document.getElementById('loadingModal');
-    modal.classList.remove('show');
-}
-
-// Form Validation
-function validateForm() {
-    const form = document.getElementById('heroForm');
-    const formData = new FormData(form);
-    let isValid = true;
-    
-    // Clear previous errors
-    document.querySelectorAll('.error-message').forEach(error => {
-        error.classList.remove('show');
-    });
-    document.querySelectorAll('.form-group').forEach(group => {
-        group.classList.remove('error');
-    });
-    
-    // Validate nome
-    const nome = formData.get('nome');
-    if (!nome || nome.trim() === '') {
-        showFieldError('nome', 'Nome é obrigatório');
-        isValid = false;
-    }
-    
-    // Validate CPF
-    const cpf = formData.get('cpf');
-    if (!cpf || cpf.trim() === '') {
-        showFieldError('cpf', 'CPF/CNPJ é obrigatório');
-        isValid = false;
-    }
-    
-    // Validate email
-    const email = formData.get('email');
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || email.trim() === '') {
-        showFieldError('email', 'E-mail é obrigatório');
-        isValid = false;
-    } else if (!emailRegex.test(email)) {
-        showFieldError('email', 'E-mail inválido');
-        isValid = false;
-    }
-    
-    // Validate terms
-    const termos = formData.get('termos');
-    if (!termos) {
-        showFieldError('termos', 'Você deve aceitar os termos');
-        isValid = false;
-    }
-    
-    return isValid;
-}
-
-function showFieldError(fieldName, message) {
-    const field = document.getElementById(fieldName);
-    if (!field) return;
-
-    const formGroup = field.closest('.form-group');
-    const errorElement = document.getElementById(`${fieldName}Error`);
-    
-    if (formGroup && errorElement) {
-        formGroup.classList.add('error');
-        errorElement.textContent = message;
-        errorElement.classList.add('show');
-    }
-}
-
-// Form Submission
-document.getElementById('heroForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-        showToast('Por favor, corrija os campos destacados.', 'error');
-        return;
-    }
-    
-    const formData = new FormData(this);
-    const submitBtn = document.getElementById('submitBtn');
-    
-    // Show loading state
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i data-lucide="loader-2"></i> Enviando...';
-    lucide.createIcons();
-    
-    showLoading();
-    
-    // Simulate form processing
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Prepare WhatsApp message (sem campo Banco)
-    const message = `Olá, desejo um atendimento!
-
-*Dados do formulário:*
-Nome: ${formData.get('nome')}
-CPF/CNPJ: ${formData.get('cpf')}
-E-mail: ${formData.get('email')}
-Mensagem: ${formData.get('mensagem') || 'Não informada'}`;
-    
-    hideLoading();
-    showToast('Formulário enviado! Redirecionando para o WhatsApp...');
-    
-    // Reset button
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = '<i data-lucide="check-circle"></i> SOLICITAR ATENDIMENTO';
-    lucide.createIcons();
-    
-    // Redirect to WhatsApp after toast
-    setTimeout(() => {
-        const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/5511966078411?text=${encodedMessage}`, '_blank');
-    }, 1000);
-});
-
-// Clear field errors on input
-document.querySelectorAll('#heroForm input, #heroForm select, #heroForm textarea').forEach(field => {
-    field.addEventListener('input', function() {
-        const formGroup = this.closest('.form-group');
-        const errorElement = formGroup.querySelector('.error-message');
-        
-        if (formGroup.classList.contains('error')) {
-            formGroup.classList.remove('error');
-            errorElement.classList.remove('show');
+    // Close other FAQ items
+    document.querySelectorAll('.faq-item').forEach((item, i) => {
+        if (i !== index) {
+            item.classList.remove('active');
         }
     });
-});
+}
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Header scroll effect
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.backdropFilter = 'blur(10px)';
-    } else {
-        header.style.background = 'var(--background)';
-        header.style.backdropFilter = 'none';
+// Testimonials
+const testimonials = [
+    {
+        name: "Maria Silva",
+        role: "Empresária • São Paulo, SP",
+        content: "Atendimento excepcional! Em menos de 24 horas conseguiram resolver uma pendência que me incomodava há meses. A equipe é extremamente profissional e o processo foi totalmente transparente.",
+        savings: "Economia de 70%",
+        avatar: "M"
+    },
+    {
+        name: "João Santos",
+        role: "Contador • Rio de Janeiro, RJ", 
+        content: "Fiquei impressionado com a competência da equipe. Negociaram um desconto incrível para quitação do meu débito e me mantiveram informado durante todo o processo. Recomendo sem reservas!",
+        savings: "Desconto de 60%",
+        avatar: "J"
+    },
+    {
+        name: "Ana Costa",
+        role: "Professora • Belo Horizonte, MG",
+        content: "Atendimento humanizado que faz toda a diferença! Me senti segura e confiante durante toda a negociação. A solução encontrada superou minhas expectativas.",
+        savings: "Parcelamento facilitado",
+        avatar: "A"
+    },
+    {
+        name: "Carlos Oliveira",
+        role: "Comerciante • Salvador, BA",
+        content: "Profissionais extremamente preparados! Resolveram um problema complexo que eu tinha há anos em apenas 2 dias. O investimento no serviço se pagou com a economia obtida.",
+        savings: "Economia de 80%",
+        avatar: "C"
+    },
+    {
+        name: "Luciana Ferreira", 
+        role: "Advogada • Brasília, DF",
+        content: "Serviço de altíssima qualidade! A transparência e eficiência da equipe são notáveis. Conseguiram uma negociação que eu nunca imaginei ser possível.",
+        savings: "Desconto de 65%",
+        avatar: "L"
     }
+];
+
+let currentTestimonial = 0;
+
+function updateTestimonial() {
+    const testimonial = testimonials[currentTestimonial];
+    
+    document.getElementById('testimonial-text').textContent = `"${testimonial.content}"`;
+    document.getElementById('author-name').textContent = testimonial.name;
+    document.getElementById('author-role').textContent = testimonial.role;
+    document.getElementById('author-avatar').textContent = testimonial.avatar;
+    document.getElementById('savings-text').textContent = testimonial.savings;
+    
+    // Update indicators
+    document.querySelectorAll('.indicator').forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentTestimonial);
+    });
+}
+
+function changeTestimonial(direction) {
+    currentTestimonial += direction;
+    if (currentTestimonial >= testimonials.length) currentTestimonial = 0;
+    if (currentTestimonial < 0) currentTestimonial = testimonials.length - 1;
+    updateTestimonial();
+}
+
+function goToTestimonial(index) {
+    currentTestimonial = index;
+    updateTestimonial();
+}
+
+// Auto-advance testimonials
+setInterval(() => {
+    changeTestimonial(1);
+}, 6000);
+
+// Smooth scroll for anchor links
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers to navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    // Initialize testimonials
+    updateTestimonial();
 });
 
-// Animation on scroll (simple implementation)
+// Add scroll animations
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.service-card, .stat-card, .faq-item');
+    const elements = document.querySelectorAll('.service-card, .benefit-card, .faq-item');
     
     elements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
@@ -233,55 +137,17 @@ function animateOnScroll() {
     });
 }
 
-// Initialize animations
-document.addEventListener('DOMContentLoaded', function() {
-    const elements = document.querySelectorAll('.service-card, .stat-card, .faq-item');
-    elements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    animateOnScroll();
-});
-
 window.addEventListener('scroll', animateOnScroll);
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', function(e) {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    
-    if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        mobileMenu.classList.remove('show');
-    }
-});
-
-// Form field formatting
-document.getElementById('cpf').addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\D/g, '');
-    
-    if (value.length <= 11) {
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    } else {
-        value = value.replace(/(\d{2})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d)/, '$1/$2');
-        value = value.replace(/(\d{4})(\d{1,2})$/, '$1-$2');
-    }
-    
-    e.target.value = value;
-});
-
-// Performance optimization: Debounce scroll events
-let scrollTimeout;
-window.addEventListener('scroll', function() {
-    if (scrollTimeout) {
-        cancelAnimationFrame(scrollTimeout);
-    }
-    scrollTimeout = requestAnimationFrame(function() {
-        animateOnScroll();
+// Initial styles for animation elements
+document.addEventListener('DOMContentLoaded', function() {
+    const elements = document.querySelectorAll('.service-card, .benefit-card, .faq-item');
+    elements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'all 0.6s ease-out';
     });
-}, { passive: true });
+    
+    // Trigger initial animation check
+    animateOnScroll();
+});

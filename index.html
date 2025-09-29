@@ -2,306 +2,962 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal do Cliente</title>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimento Quitação - Segunda Via de Boleto e Quitação de Débitos</title>
+    <meta name="description"
+        content="Resolva suas pendências financeiras rapidamente! Segunda via de boleto, quitação de parcelas e atendimento personalizado. Atendimento 24/7 via WhatsApp.">
+    <meta name="keywords"
+        content="segunda via boleto, quitação débitos, negociação parcelas, atendimento financeiro, resolver pendências">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Atendimento Quitação - Resolva suas Pendências Financeiras">
+    <meta property="og:description"
+        content="Segunda via de boleto, quitação de parcelas e atendimento personalizado. Rápido, seguro e eficiente.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://atendimentoquitacao.com.br">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Atendimento Quitação - Resolva suas Pendências Financeiras">
+    <meta name="twitter:description"
+        content="Segunda via de boleto, quitação de parcelas e atendimento personalizado. Rápido, seguro e eficiente.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://atendimentoquitacao.com.br">
+
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-618990298">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-618990298');
+</script>
+
 
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', Arial, sans-serif;
-    }
-
     body {
-      overflow-x: hidden;
-      background-color: #f8f9fb;
-      color: #333;
-      line-height: 1.6;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
     }
 
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(90deg, #1B1F2B, #2c3142);
-      padding: 18px 60px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .navbar .logo {
-      font-size: 26px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 1px;
-    }
-
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-    }
-
-    .navbar ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 8px 15px;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-
-    .navbar ul li a:hover {
-      background-color: #0066cc;
-      box-shadow: 0 3px 10px rgba(0, 102, 204, 0.4);
-    }
-
-    /* Hero Section */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 60vh;
-      background: url('banner-1.png') no-repeat center center/cover;
-      display: flex;
-      align-items: center;
-      padding-left: 8%;
-      color: #fff;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
+    /* Fundo escuro que bloqueia interação */
+    .overlay {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 600px;
-    }
-
-    .hero-content h2 {
-      font-size: 22px;
-      margin-bottom: 12px;
-      background-color: #0066cc;
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 5px;
-    }
-
-    .hero-content h1 {
-      font-size: 42px;
-      margin-bottom: 25px;
-      line-height: 1.3;
-      font-weight: 700;
-    }
-
-    /* Serviços */
-    .services {
-      background-color: #fff;
-      padding: 100px 50px;
-      text-align: center;
-    }
-
-    .services h2 {
-      font-size: 2.8rem;
-      color: #1B1F2B;
-      margin-bottom: 50px;
-      font-weight: 700;
-    }
-
-    .services-cards {
+      background: rgba(0, 0, 0, 0.7);
       display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
       justify-content: center;
-    }
-
-    .service-card {
-      background-color: #fdfdfd;
-      border-radius: 15px;
-      padding: 40px 25px;
-      width: 360px;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    .service-card i {
-      margin-bottom: 18px;
-      color: #0066cc;
-    }
-
-    .service-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      color: #1B1F2B;
-      font-weight: 600;
-    }
-
-    .service-card p {
-      font-size: 15px;
-      color: #555;
-    }
-
-    .service-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Rodapé */
-    footer {
-      background-color: #1B1F2B;
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    footer p {
-      margin: 6px 0;
-      font-size: 14px;
-      opacity: 0.85;
-    }
-
-    /* Botão WhatsApp */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      border-radius: 50px;
-      text-align: center;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
+      z-index: 9999;
+    }
+
+    /* Caixa do modal */
+    .modal {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      width: 400px;
+      max-width: 100%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .modal h2 {
+      margin-top: 0;
+      color: #003399;
+    }
+
+    .modal p {
+      margin: 15px 0;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .btn-whatsapp {
+      display: inline-block;
+      background: #003399;
+      color: white;
       padding: 12px 18px;
-      transition: transform 0.3s ease;
-      color: #fff;
-      font-weight: 500;
+      border-radius: 6px;
+      font-size: 15px;
       text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
     }
 
-    .whatsapp-float img {
-      width: 30px;
-      height: 30px;
+    .btn-whatsapp:hover {
+      background: #002080;
     }
 
-    .whatsapp-float:hover {
-      transform: scale(1.08);
+    .btn-whatsapp {
+      pointer-events: auto;
     }
+    
+      /* Fundo do modal */
+  .modal {
+    display: none; /* Começa escondido */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        padding: 20px;
-      }
+  /* Caixa do modal */
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  }
 
-      .logo {
-        font-size: 2rem;
-      }
+  /* Botão fechar (X) */
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .close:hover {
+    color: #8B0000;
+  }
 
-      .services {
-        padding: 60px 20px;
-      }
-
-      .navbar .nav-links {
-        display: none;
-      }
-
-      .services h2 {
-        font-size: 2rem;
-      }
-
-      .service-card {
-        width: 100%;
-      }
-
-      .hero {
-        height: 60vh;
-        padding: 20px;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .hero-content h1 {
-        font-size: 28px;
-      }
-    }
+  .btn-whatsapp {
+    display: inline-block;
+    margin-top: 20px;
+    background: #25D366;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s;
+  }
+  .btn-whatsapp:hover {
+    transform: scale(1.05);
+  }
   </style>
+
 </head>
 
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Portal do Cliente</div>
-    <ul class="nav-links">
-      <li><a href="#">Contato</a></li>
-      <li><a href="#">Soluções para empresas</a></li>
-      <li><a href="#services">Serviços</a></li>
-    </ul>
-  </nav>
+    
+<!-- Modal -->
+<div id="meuModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Atendimento ao Cliente</h2>
+    <p>Estamos prontos para atender sua solicitação com segurança e ética.</p>
+    <a href="https://wa.me/551151924444?text=Olá,%20desejo%20um%20atendimento!" target="_blank" class="btn-whatsapp">Chamar no WhatsApp</a>
+  </div>
+</div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h2>Para Você</h2>
-      <h1>Acesso do Cliente</h1>
-      <p>Negocie suas dívidas, tenha descontos exclusivos e recupere seu crédito com segurança.</p>
-    </div>
-  </section>
+  
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">PC</div>
+                    <div class="logo-text">
+                        <span class="logo-title">Portal do Cliente</span>
+                    </div>
+                </div>
 
-  <!-- Serviços -->
-  <section class="services" id="services">
-    <h2>Fale com um especialista</h2>
-    <div class="services-cards">
-      <div class="service-card">
-        <i class="fas fa-robot fa-3x"></i>
-        <h3>Negociação Automática</h3>
-        <p>Plataforma inteligente para negociação rápida e sem burocracia.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-hand-holding-dollar fa-3x"></i>
-        <h3>Descontos Exclusivos</h3>
-        <p>Condições especiais e parcelamento flexível para sua realidade.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-headset fa-3x"></i>
-        <h3>Atendimento Premium</h3>
-        <p>Equipe especializada pronta para tirar suas dúvidas e ajudar.</p>
-      </div>
-    </div>
-  </section>
+                <nav class="nav">
+                    <a href="#servicos" class="nav-link">Serviços</a>
+                    <a href="#beneficios" class="nav-link">Benefícios</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    <a href="#contato" class="nav-link">Contato</a>
+                </nav>
 
-  <!-- Rodapé -->
-  <footer>
-    <p>© 2025 Portal do Cliente</p>
-    <p>CNPJ: 48.583.698/0001-41</p>
-    <p>Todos os direitos reservados.</p>
-  </footer>
+                <button class="cta-button" onclick="openWhatsApp()">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                    </svg>
+                    Falar Conosco
+                </button>
 
-  <!-- WhatsApp -->
-  <a href="https://wa.link/9f0odx" class="whatsapp-float" target="_blank" aria-label="Atendimento via WhatsApp">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-    <span>Falar com atendente!</span>
-  </a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div class="mobile-menu">
+                <nav class="mobile-nav">
+                    <a href="#servicos" class="mobile-nav-link" onclick="toggleMobileMenu()">Serviços</a>
+                    <a href="#beneficios" class="mobile-nav-link" onclick="toggleMobileMenu()">Benefícios</a>
+                    <a href="#faq" class="mobile-nav-link" onclick="toggleMobileMenu()">FAQ</a>
+                    <a href="#contato" class="mobile-nav-link" onclick="toggleMobileMenu()">Contato</a>
+                    <button class="mobile-cta-button" onclick="openWhatsApp()">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                        </svg>
+                        Falar Conosco
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <br><br>
+
+                    <h1 class="hero-title">
+                        Resolva suas
+                        <span class="hero-title-accent">pendências</span>
+                        financeiras
+                    </h1>
+
+                    <p class="hero-description">
+                        Segunda via de boletos, quitação de parcelas e atendimento personalizado
+                        com a segurança e agilidade que você precisa.
+                    </p>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">10k+</div>
+                            <div class="stat-label">Clientes Atendidos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">24h</div>
+                            <div class="stat-label">Tempo Médio</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Satisfação</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-features">
+                        <div class="feature">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                            <span>100% Seguro</span>
+                        </div>
+                        <div class="feature">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12,6 12,12 16,14" />
+                            </svg>
+                            <span>Atendimento Rápido</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta">
+                        <button class="btn-primary" onclick="openWhatsApp()">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                            </svg>
+                            Iniciar Atendimento
+                        </button>
+                        <button class="btn-secondary" onclick="scrollToSection('servicos')">
+                            Conhecer Serviços
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <div class="hero-image-container">
+                        <img src="img/banner-1.png" alt="Atendimento profissional para quitação de débitos"
+                            class="hero-img">
+                            
+                                                    <img src="img/meidco-1.png" alt="Atendimento profissional para quitação de débitos"
+                            class="hero-img">
+                        <div class="floating-card">
+                            <div class="floating-card-icon">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                                </svg>
+                            </div>
+                            <div class="floating-card-content">
+                                <p class="floating-card-title">Atendimento Online</p>
+                                <p class="floating-card-subtitle">Disponível 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Nossos Serviços</div>
+                <h2 class="section-title">
+                    Soluções Completas para
+                    <span class="section-title-block">Suas Necessidades</span>
+                </h2>
+                <p class="section-description">
+                    Oferecemos um conjunto abrangente de serviços financeiros
+                    para resolver suas pendências de forma rápida e segura
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card" onclick="openWhatsApp()">
+                    <div class="service-icon">
+                        <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14,2 14,8 20,8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10,9 9,9 8,9" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Segunda Via de Boleto</h3>
+                    <p class="service-description">Obtenha rapidamente a segunda via dos seus boletos em atraso com
+                        total segurança</p>
+                    <div class="service-cta">
+                        Solicitar Segunda Via
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="service-card" onclick="openWhatsApp()">
+                    <div class="service-icon">
+                        <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                            <line x1="1" y1="10" x2="23" y2="10" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Quitação de Parcelas</h3>
+                    <p class="service-description">Negocie e quite suas pendências com as melhores condições do mercado
+                    </p>
+                    <div class="service-cta">
+                        Negociar Débito
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="service-card" onclick="openWhatsApp()">
+                    <div class="service-icon">
+                        <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Consultoria Especializada</h3>
+                    <p class="service-description">Suporte personalizado com especialistas em soluções financeiras</p>
+                    <div class="service-cta">
+                        Falar com Especialista
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="service-card featured" onclick="openWhatsApp()">
+                    <div class="service-icon">
+                        <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Atendimento Imediato</h3>
+                    <p class="service-description">Contato direto via WhatsApp para resolução rápida e eficiente</p>
+                    <div class="service-cta">
+                        Iniciar Conversa
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="services-cta">
+                <div class="services-cta-content">
+                    <h3>Pronto para resolver suas pendências?</h3>
+                    <p>Nossa equipe está disponível para atendê-lo agora mesmo. Inicie uma conversa e descubra como
+                        podemos ajudar.</p>
+                    <button class="btn-primary" onclick="openWhatsApp()">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                        </svg>
+                        Começar Agora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Por Que Nos Escolher</div>
+                <h2 class="section-title">
+                    Compromisso com a
+                    <span class="section-title-accent">Excelência</span>
+                </h2>
+                <p class="section-description">
+                    Nossa dedicação em oferecer as melhores soluções financeiras
+                    é respaldada por anos de experiência e milhares de clientes satisfeitos
+                </p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <h3 class="benefit-title">Segurança Bancária</h3>
+                        <p class="benefit-description">Protocolo de segurança de nível bancário para proteger seus dados
+                            pessoais e financeiros</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12,6 12,12 16,14" />
+                            </svg>
+                        </div>
+                        <h3 class="benefit-title">Resolução em 24h</h3>
+                        <p class="benefit-description">Atendimento express com resolução garantida em até 24 horas úteis
+                        </p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </div>
+                        <h3 class="benefit-title">10+ Anos de Experiência</h3>
+                        <p class="benefit-description">Década de expertise em negociação e regularização de débitos</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                                <path
+                                    d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                            </svg>
+                        </div>
+                        <h3 class="benefit-title">Atendimento Humanizado</h3>
+                        <p class="benefit-description">Suporte personalizado com profissionais especializados em
+                            soluções financeiras</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                <polyline points="22,4 12,14.01 9,11.01" />
+                            </svg>
+                        </div>
+                        <h3 class="benefit-title">Processo Transparente</h3>
+                        <p class="benefit-description">Acompanhamento completo do processo sem taxas ocultas ou
+                            surpresas</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <h3 class="benefit-title">10.000+ Clientes Satisfeitos</h3>
+                        <p class="benefit-description">Histórico comprovado de sucesso com milhares de casos resolvidos
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefits-stats">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">10k+</div>
+                        <div class="stat-label">Clientes Atendidos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Taxa de Sucesso</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24h</div>
+                        <div class="stat-label">Tempo Médio</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Anos de Experiência</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    Perguntas Frequentes
+                </div>
+                <h2 class="section-title">
+                    Tire suas dúvidas sobre
+                    <span class="section-title-block">nossos serviços</span>
+                </h2>
+                <p class="section-description">
+                    Preparamos as respostas para as perguntas mais comuns
+                    de nossos clientes sobre o processo de atendimento
+                </p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(0)">
+                            <span>Como posso obter a segunda via do meu boleto?</span>
+                            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <polyline points="6,9 12,15 18,9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Entre em contato conosco pelo WhatsApp informando seus dados pessoais e o tipo de débito.
+                                Nossa equipe especializada localizará seu boleto em nossa base de dados e enviará a
+                                segunda via imediatamente por e-mail ou WhatsApp, garantindo total segurança no
+                                processo.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(1)">
+                            <span>Quais tipos de débitos vocês atendem?</span>
+                            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <polyline points="6,9 12,15 18,9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Atendemos uma ampla gama de débitos incluindo cartões de crédito, empréstimos pessoais,
+                                financiamentos de veículos e imóveis, contas em atraso de diversos segmentos, além de
+                                negociações com órgãos de proteção ao crédito. Consulte nossa equipe para verificar seu
+                                caso específico.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(2)">
+                            <span>É possível negociar desconto na quitação?</span>
+                            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <polyline points="6,9 12,15 18,9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim! Nossos especialistas em negociação trabalham incansavelmente para conseguir as
+                                melhores condições de pagamento. Oferecemos descontos significativos para pagamento à
+                                vista, parcelamentos facilitados e condições especiais adaptadas ao seu perfil
+                                financeiro.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(3)">
+                            <span>O atendimento é gratuito? Há taxas ocultas?</span>
+                            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <polyline points="6,9 12,15 18,9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>O atendimento inicial, consultoria e análise do seu caso são completamente gratuitos.
+                                Nossa política de transparência total garante que você saiba exatamente todos os custos
+                                antes de qualquer procedimento. Cobramos apenas uma taxa de sucesso quando conseguimos
+                                realizar a negociação.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(4)">
+                            <span>Quanto tempo demora para resolver minha situação?</span>
+                            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <polyline points="6,9 12,15 18,9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Na maioria dos casos, conseguimos resolver em até 24 horas úteis. Para situações mais
+                                complexas que envolvem múltiplos credores, o prazo pode estender-se de 2 a 5 dias úteis.
+                                Durante todo o processo, você recebe atualizações constantes sobre o andamento via
+                                WhatsApp.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(5)">
+                            <span>Meus dados pessoais estão seguros?</span>
+                            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <polyline points="6,9 12,15 18,9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutamente! Seguimos rigorosamente todas as normas da LGPD (Lei Geral de Proteção de
+                                Dados) e utilizamos protocolos de segurança de nível bancário. Seus dados são
+                                criptografados com tecnologia de ponta e jamais são compartilhados com terceiros não
+                                autorizados.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-cta">
+                    <div class="faq-cta-content">
+                        <h3>Ainda tem dúvidas?</h3>
+                        <p>Nossa equipe está pronta para esclarecer qualquer questão e ajudar você a encontrar a melhor
+                            solução para seu caso.</p>
+                        <button class="btn-primary" onclick="openWhatsApp()">
+                            Falar com Especialista
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                        <path
+                            d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+                    </svg>
+                    Depoimentos de Clientes
+                </div>
+                <h2 class="section-title">
+                    Histórias de
+                    <span class="section-title-accent">Sucesso</span>
+                </h2>
+                <p class="section-description">
+                    Mais de 10.000 clientes já transformaram suas vidas financeiras
+                    com nossos serviços especializados
+                </p>
+            </div>
+
+            <div class="testimonials-container">
+                <div class="testimonial-navigation">
+                    <button class="nav-btn prev-btn" onclick="changeTestimonial(-1)">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <polyline points="15,18 9,12 15,6" />
+                        </svg>
+                    </button>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">
+                                <div class="stars">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <polygon
+                                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                    </svg>
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <polygon
+                                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                    </svg>
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <polygon
+                                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                    </svg>
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <polygon
+                                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                    </svg>
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <polygon
+                                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                    </svg>
+                                </div>
+                                <div class="savings-badge">
+                                    <span id="savings-text">Economia de 70%</span>
+                                </div>
+                            </div>
+
+                            <blockquote id="testimonial-text">
+                                "Atendimento excepcional! Em menos de 24 horas conseguiram resolver uma pendência que me
+                                incomodava há meses. A equipe é extremamente profissional e o processo foi totalmente
+                                transparente."
+                            </blockquote>
+
+                            <div class="testimonial-author">
+                                <div class="author-avatar" id="author-avatar">M</div>
+                                <div class="author-info">
+                                    <p class="author-name" id="author-name">Maria Silva</p>
+                                    <p class="author-role" id="author-role">Empresária • São Paulo, SP</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="nav-btn next-btn" onclick="changeTestimonial(1)">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <polyline points="9,18 15,12 9,6" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="testimonial-indicators">
+                    <button class="indicator active" onclick="goToTestimonial(0)"></button>
+                    <button class="indicator" onclick="goToTestimonial(1)"></button>
+                    <button class="indicator" onclick="goToTestimonial(2)"></button>
+                    <button class="indicator" onclick="goToTestimonial(3)"></button>
+                    <button class="indicator" onclick="goToTestimonial(4)"></button>
+                </div>
+
+                <div class="testimonial-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10.000+</div>
+                        <div class="stat-label">Clientes Satisfeitos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Taxa de Aprovação</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">R$ 50M+</div>
+                        <div class="stat-label">Economia Gerada</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="footer" style="padding: 20px;">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">PC</div>
+                        <div class="footer-logo-text">
+                            <span class="footer-logo-title">Portal do Cliente</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        ...
+                    </p>
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                            <span>LGPD</span>
+                        </div>
+                        <div class="trust-badge">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                            <span>Certificado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Nossos Serviços</h4>
+                    <ul class="footer-list">
+                        <li><a href="#">Segunda Via de Boleto</a></li>
+                        <li><a href="#">Quitação de Parcelas</a></li>
+                        <li><a href="#">Consultoria Especializada</a></li>
+                        <li><a href="#">Negociação de Débitos</a></li>
+                        <li><a href="#">Atendimento Personalizado</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Navegação</h4>
+                    <ul class="footer-list">
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#faq">Perguntas Frequentes</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>© 2024 JEEP CLUBE DIAMANTINA. Todos os direitos reservados.</p>
+                    <p>CNPJ: 03.894.683/0001-66</p>
+                </div>
+                <div class="footer-badges">
+                    <div class="footer-badge">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                        <span>Dados protegidos pela LGPD</span>
+                    </div>
+                    <div class="footer-badge">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                        <span>Certificado de qualidade ISO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/551151924444?text=Olá,%20desejo%20um%20atendimento!" class="whatsapp-float" target="_blank"
+        aria-label="Atendimento via WhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+        <span>Falar com atendente!</span>
+    </a>
+
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            /* Espaço entre o ícone e o texto */
+            padding: 10px 15px;
+            /* Ajusta tamanho do botão */
+            transition: transform 0.3s ease;
+            color: #fff;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .whatsapp-float span {
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            .whatsapp-float {
+                padding: 8px 12px;
+                gap: 6px;
+            }
+
+            .whatsapp-float img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .whatsapp-float span {
+                font-size: 12px;
+            }
+        }
+    </style>
+
+    
+<script>
+  // Abrir modal (exemplo automático depois de 3s)
+  setTimeout(() => {
+    document.getElementById("meuModal").style.display = "block";
+  }, 3000);
+
+  // Fechar modal no clique do X
+  document.querySelector(".close").onclick = function() {
+    document.getElementById("meuModal").style.display = "none";
+  }
+
+  // Fechar modal clicando fora da caixa
+  window.onclick = function(event) {
+    const modal = document.getElementById("meuModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+
+    <script src="script.js"></script>
 </body>
+
 </html>
