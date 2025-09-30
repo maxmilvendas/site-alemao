@@ -8,7 +8,7 @@ function toggleMobileMenu() {
 // WhatsApp Link
 function openWhatsApp() {
     const message = "Olá, desejo um atendimento!";
-    const phone = "5511966078411";
+    const phone = "551151924444";
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 }
