@@ -1,23 +1,24 @@
 /* Banking Professional Design System */
+/* Banking Professional Design System - VERMELHO */
 :root {
-  --primary: hsl(220, 100%, 6%);
-  --primary-light: hsl(220, 100%, 12%);
-  --primary-muted: hsl(220, 13%, 91%);
-  --accent: blue;
-  --accent-light: blue;
-  --accent-muted: hsl(145, 70%, 95%);
+  --primary: hsl(0, 100%, 6%);
+  --primary-light: hsl(0, 100%, 12%);
+  --primary-muted: hsl(0, 13%, 91%);
+  --accent: red;
+  --accent-light: hsl(0, 100%, 65%);
+  --accent-muted: hsl(0, 70%, 95%);
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(222, 13%, 16%);
-  --muted-foreground: hsl(215, 16%, 47%);
-  --border: hsl(214, 32%, 91%);
-  --gradient-primary: linear-gradient(135deg, hsl(220, 100%, 6%), hsl(220, 100%, 12%));
-  --gradient-accent: linear-gradient(135deg, hsl(210, 70%, 40%), hsl(210, 70%, 50%));
-  --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(210, 40%, 98%));
+  --foreground: hsl(0, 13%, 16%);
+  --muted-foreground: hsl(0, 16%, 47%);
+  --border: hsl(0, 32%, 91%);
+  --gradient-primary: linear-gradient(135deg, hsl(0, 100%, 6%), hsl(0, 100%, 12%));
+  --gradient-accent: linear-gradient(135deg, hsl(0, 70%, 40%), hsl(0, 70%, 50%));
+  --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(0, 40%, 98%));
   --shadow-sm: 0 1px 2px 0 hsl(0, 0%, 0%, 0.05);
   --shadow-md: 0 4px 6px -1px hsl(0, 0%, 0%, 0.1);
   --shadow-lg: 0 10px 15px -3px hsl(0, 0%, 0%, 0.1);
-  --shadow-primary: 0 4px 14px 0 hsl(220, 100%, 6%, 0.15);
-  --shadow-accent: 0 4px 14px 0 hsl(145, 70%, 40%, 0.15);
+  --shadow-primary: 0 4px 14px 0 hsl(0, 100%, 6%, 0.15);
+  --shadow-accent: 0 4px 14px 0 hsl(0, 70%, 40%, 0.15);
 }
 
 
