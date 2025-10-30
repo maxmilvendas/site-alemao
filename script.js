@@ -17,14 +17,14 @@ function toggleMobileMenu() {
 
 // WhatsApp Functions
 function openWhatsApp(service) {
-    const phoneNumber = '5511958542489';
+    const phoneNumber = '5511957992056';
     const message = `Olá, desejo um atendimento! ${service}.`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
 
 function sendSimulationToWhatsApp(formData, result) {
-    const phoneNumber = '5511958542489';
+    const phoneNumber = '5511957992056';
     const message = `Olá, desejo um atendimento!:
 
 Nome: ${formData.name}
